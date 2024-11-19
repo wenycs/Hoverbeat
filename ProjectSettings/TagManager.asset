@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Activator
   - Block
+  - Note
+  - Hold
   layers:
   - Default
   - TransparentFX

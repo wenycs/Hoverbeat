@@ -12,32 +12,48 @@ public class NoteObject : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(keyToPress))
+        if (canBePressed) 
         {
-            if(canBePressed)
+            if(Input.GetKeyDown(keyToPress) && gameObject.tag == "Note")
             {
-                gameObject.SetActive(false);
-                if (isTwinNote)
-                {
-                    connector.SetActive(false);
-                }
-    
-                if(transform.position.x > -6.1 && transform.position.x < -5.9)
-                {
-                    GameManager.instance.PerfectHit();
-                    Instantiate(perfectEffect, new Vector3(-6, 0, 0), perfectEffect.transform.rotation);
-                }
-                else if(transform.position.x > -6.25 && transform.position.x < -5.75)
-                {
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, new Vector3(-6, 0, 0), goodEffect.transform.rotation);
-                }
-                else
-                {
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, new Vector3(-6, 0, 0), hitEffect.transform.rotation);
-                }
+                NoteTap();
             }
+
+            if(Input.GetKey(keyToPress) && gameObject.tag == "Hold")
+            {
+                GameManager.instance.PerfectHit();
+                Instantiate(perfectEffect, new Vector3(-6, 0, 0), perfectEffect.transform.rotation);
+            }
+
+            if(Input.GetKeyUp(keyToPress) && gameObject.tag == "Hold")
+            {
+                NoteTap();
+            }
+        }
+    }
+
+    public void NoteTap()
+    {
+        gameObject.SetActive(false);
+        if (isTwinNote)
+        {
+            connector.SetActive(false);
+        }
+    
+        if(transform.position.x > -6.1 && transform.position.x < -5.9)
+        {
+            GameManager.instance.PerfectHit();
+            Instantiate(perfectEffect, new Vector3(-6, 0, 0), perfectEffect.transform.rotation);
+        }
+        else if(transform.position.x > -6.25 && transform.position.x < -5.75)
+        {
+            GameManager.instance.GoodHit();
+            Instantiate(goodEffect, new Vector3(-6, 0, 0), goodEffect.transform.rotation);
+        }
+        else
+        {
+            GameManager.instance.NormalHit();
+            Instantiate(hitEffect, new Vector3(-6, 0, 0), hitEffect.transform.rotation);
         }
     }
 
