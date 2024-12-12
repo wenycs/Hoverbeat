@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1552459470885251667}
   - component: {fileID: 9201261616388689617}
   - component: {fileID: 6665577076121470521}
+  - component: {fileID: 59583232014996908}
   m_Layer: 0
   m_Name: Block Note Top
-  m_TagString: Note
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,9 +28,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6691708984100176840}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -1, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.65, y: -1, z: 0}
+  m_LocalScale: {x: 1.10355, y: 1.10355, z: 1.4714}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,9 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -232265573
   m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.764151, g: 0.1477839, b: 0.1477839, a: 1}
+  m_SortingOrder: 7
+  m_Sprite: {fileID: 1163276921, guid: f8e60b5abc5080e4eb755b4e94122baa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,13 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
-  isTwinNote: 0
+  noteHit: 0
+  noteBlock: 0
   hitEffect: {fileID: 7655595321018829718, guid: 746f71901f5c8a14aacb81d7309a7027, type: 3}
   goodEffect: {fileID: 234553462043506599, guid: 2efcc3a70bbc899449ef8c06284e645e, type: 3}
   perfectEffect: {fileID: 1265946523640316563, guid: 9de29e31837548b4895c109dd96e5b15, type: 3}
   missEffect: {fileID: 8412844532531240919, guid: a43391d89a6f5604e8ce5ec4d38b2c71, type: 3}
-  connector: {fileID: 0}
+  tapEffect: {fileID: 7911359622699735878, guid: 87c3d15122afb7f4185d47699364767b, type: 3}
   keyToPress: 100
+  hitSfx: {fileID: 0}
+  blockSfx: {fileID: 0}
 --- !u!58 &6665577076121470521
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,6 +142,27 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.85, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.33
+--- !u!95 &59583232014996908
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691708984100176840}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6aa05a707f5ce394ab95f4e438f8dd25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
