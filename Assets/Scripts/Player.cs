@@ -10,15 +10,25 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.J)) 
         {
-            animator.SetBool("isHit", true);
-            StartCoroutine(HitDelay());
+            NoteHit();
         }
 
         if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.K)) 
         {
-            animator.SetBool("isBlock", true);
-            StartCoroutine(BlockDelay());
+            NoteBlock();
         }
+    }
+
+    public void NoteHit()
+    {
+        animator.SetBool("isHit", true);
+        StartCoroutine(HitDelay());
+    }
+
+    public void NoteBlock()
+    {
+        animator.SetBool("isBlock", true);
+        StartCoroutine(BlockDelay());
     }
 
     IEnumerator HitDelay()

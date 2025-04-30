@@ -14,20 +14,43 @@ public class NoteObject : MonoBehaviour
 
     void Update()
     {
-        if (canBePressed) 
+        // --- KEYBOARD SUPPORT ---
+        if (canBePressed && Input.GetKeyDown(keyToPress))
         {
-            if(Input.GetKeyDown(keyToPress) && gameObject.tag == "Note")
+            if (gameObject.CompareTag("Note"))
             {
                 NoteTap();
             }
-
-            if(Input.GetKeyDown(keyToPress) && gameObject.tag == "Block")
+            else if (gameObject.CompareTag("Block"))
             {
                 NoteBlock();
             }
+        }
 
+        // --- MOBILE TOUCH SUPPORT ---
+        if (canBePressed && Input.touchCount > 0)
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                Vector3 wp = Camera.main.ScreenToWorldPoint(touch.position);
+                Vector2 touchPos = new Vector2(wp.x, wp.y);
+
+                Collider2D hit = Physics2D.OverlapPoint(touchPos);
+                if (hit && hit.gameObject == this.gameObject)
+                {
+                    if (gameObject.CompareTag("Note") && touch.phase == TouchPhase.Began)
+                    {
+                        NoteTap();
+                    }
+                    else if (gameObject.CompareTag("Block") && (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved))
+                    {
+                        NoteBlock();
+                    }
+                }
+            }
         }
     }
+
 
     public void NoteTap()
     {
